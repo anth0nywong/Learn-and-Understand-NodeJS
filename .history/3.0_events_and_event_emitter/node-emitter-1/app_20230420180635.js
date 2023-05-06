@@ -1,0 +1,1 @@
+let Emitter = require('./emitter');

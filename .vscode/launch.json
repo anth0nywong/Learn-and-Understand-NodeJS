@@ -11,7 +11,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\2.0_modules-exports-require\\builld-module\\app.js"
+            "program": "${workspaceFolder}\\5.0_HTTP-web-server\\app.js"
         }
     ]
 }
