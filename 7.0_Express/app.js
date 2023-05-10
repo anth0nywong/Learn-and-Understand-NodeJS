@@ -24,7 +24,7 @@ app.get("/api", function (req, res) {
 });
 
 app.get("/person/:id", function (req, res) {
-  res.render("person", { ID: req.params.id });
+  res.render("person", { ID: req.params.id, Qstr: req.query.qstr });
 });
 
 app.listen(port);
