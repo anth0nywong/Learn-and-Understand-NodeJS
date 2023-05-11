@@ -2,8 +2,7 @@ let express = require("express");
 let bodyParser = require("body-parser");
 let app = express();
 
-let urlencodedParser = bodyParser.urlencoded({ extended: false });
-let jsonParser = bodyParser.json();
+let urlencodeedParser = bodyParser.urlencoded({ extended: "false" });
 
 let port = process.env.PORT || 3000;
 
@@ -29,18 +28,6 @@ app.get("/api", function (req, res) {
 
 app.get("/person/:id", function (req, res) {
   res.render("person", { ID: req.params.id, Qstr: req.query.qstr });
-});
-// Try body parser for getting post data
-app.post("/person", urlencodedParser, function (req, res) {
-  res.send("Thank you!");
-  console.log(req.body.firstname);
-  console.log(req.body.lastname);
-});
-
-app.post("/personjson", jsonParser, function (req, res) {
-  res.send("Thank you for json data!");
-  console.log(req.body.firstname);
-  console.log(req.body.lastname);
 });
 
 app.listen(port);

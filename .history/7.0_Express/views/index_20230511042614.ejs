@@ -15,11 +15,10 @@
       <input type="submit" value="Submit" />
     </form>
     <script>
-      console.log("running");
       $.ajax({
         type: "POST",
         url: "/personjson",
-        data: JSON.stringify({
+        data: JSON.stringtify({
           firstname: "Jane",
           lastname: "Doe",
         }),
