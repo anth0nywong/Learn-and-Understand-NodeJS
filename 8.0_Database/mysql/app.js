@@ -24,7 +24,7 @@ app.use("/", function (req, res, next) {
     "SELECT people.ID, Firstname, Lastname, address.Address FROM people INNER JOIN peopleaddresses ON people.id = peopleaddresses.personID INNER JOIN address ON address.id = peopleaddresses.AddressID",
     function (err, rows) {
       if (err) throw err;
-      console.log(rows[0].Firstname + " " + rows[0].Lastname);
+      console.log(row[0].firstname);
     }
   );
   next();
