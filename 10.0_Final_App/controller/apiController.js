@@ -11,8 +11,8 @@ module.exports = function (app) {
       .then(function (todos) {
         res.send(todos);
       })
-      .then(function (err) {
-        throw err;
+      .catch(function (err) {
+        console.log(err);
       });
   });
   app.get("/api/todo/:id", function (req, res) {
@@ -21,24 +21,23 @@ module.exports = function (app) {
         res.send(todo);
       })
       .catch(function (err) {
-        throw err;
+        console.log(err);
       });
   });
 
-  app.post("api/todo", function (req, res) {
+  app.post("/api/todo", function (req, res) {
     if (req.body.id) {
-      Todos.findByIdAndUpdate(
-        req.body.id,
-        {
-          todo: req.body.todo,
-          isDone: req.body.isDone,
-          hasAttachment: req.body.hasAttachment,
-        },
-        function (err, todo) {
-          if (err) throw err;
+      Todos.findByIdAndUpdate(req.body.id, {
+        todo: req.body.todo,
+        isDone: req.body.isDone,
+        hasAttachment: req.body.hasAttachment,
+      })
+        .then(function () {
           res.send("Success");
-        }
-      );
+        })
+        .catch(function (err) {
+          console.log(err);
+        });
     } else {
       let newTodo = Todos({
         username: "test",
@@ -46,16 +45,23 @@ module.exports = function (app) {
         isDone: req.body.isDone,
         hasAttachment: req.body.hasAttachment,
       });
-      newTodo.save(function (err) {
-        if (err) throw err;
-        res.send("Success");
-      });
+      newTodo
+        .save()
+        .then(function () {
+          res.send("Success");
+        })
+        .catch(function (err) {
+          console.log(err);
+        });
     }
   });
   app.delete("/api/todo", function (req, res) {
-    Todos.findByIdAndRemove(req.body.id, function (err) {
-      if (err) throw err;
-      res.send("Success");
-    });
+    Todos.findByIdAndRemove(req.body.id)
+      .then(function () {
+        res.send("Success");
+      })
+      .catch(function (err) {
+        console.log(err);
+      });
   });
 };
